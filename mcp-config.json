@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "violett-mcp-server": {
+      "command": "npx",
+      "args": ["-y", "ts-node", "src/examples/single-node-server.ts"],
+      "cwd": "/Users/luigi/Documents/Tech dev/Tests/violett-mcp-server",
+      "env": {}
+    }
+  }
+} 

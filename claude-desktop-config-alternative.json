@@ -1,0 +1,7 @@
+{
+  "violett-mcp-server": {
+    "command": "node",
+    "args": ["dist/examples/single-node-server.js"],
+    "cwd": "/Users/luigi/Documents/Tech dev/Tests/violett-mcp-server"
+  }
+} 
