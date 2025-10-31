@@ -11,6 +11,10 @@ import {
 
 const server = new Server(
   {
+    name: "violett-mcp-server",
+    version: "1.0.0",
+  },
+  {
     capabilities: {
       tools: {},
       prompts: {},
@@ -22,6 +26,21 @@ const server = new Server(
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
+      {
+        name: "fetch_url",
+        description: "Fetch content from a URL via HTTP GET request",
+        inputSchema: {
+          type: "object",
+          properties: {
+            url: {
+              type: "string",
+              description: "URL to fetch",
+            },
+          },
+          required: ["url"],
+        },
+      },
+      {
         name: "post_data",
         description: "Send data via HTTP POST request",
         inputSchema: {
@@ -60,19 +79,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           content: [
             {
               type: "text",
-              text: `HTTP ${response.s
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                tatus} ${response.statusText}\n\nHeaders:\n${JSON.stringify(headers, null, 2)}\n\nBody:\n${content}`,
+              text: `HTTP ${response.status} ${response.statusText}\n\nHeaders:\n${JSON.stringify(headers, null, 2)}\n\nBody:\n${content}`,
             },
           ],
         };
@@ -81,7 +88,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           content: [
             {
               type: "text",
-              text: `Error fetching URL: ${error                   instanceof Error ? error.message : String(error)}`,
+              text: `Error fetching URL: ${error instanceof Error ? error.message : String(error)}`,
             },
           ],
           isError: true,
@@ -89,7 +96,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
     }
 
-    case "post_data ": {
+    case "post_data": {
       const url = request.params.arguments?.url as string;
       const data = request.params.arguments?.data;
 
@@ -121,7 +128,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return {
           content: [
             {
-              type: "text api_key: fcd9d58e-7a4c-4d19-9376-1012d71730f4",
+              type: "text",
               text: `Error posting data: ${error instanceof Error ? error.message : String(error)}`,
             },
           ],
