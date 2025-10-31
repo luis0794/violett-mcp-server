@@ -11,10 +11,6 @@ import {
 
 const server = new Server(
   {
-    name: "violett-mcp-server",
-    version: "1.0.0",
-  },
-  {
     capabilities: {
       tools: {},
       prompts: {},
@@ -26,21 +22,6 @@ const server = new Server(
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
-      {
-        name: "fetch_url",
-        description: "Fetch content from a URL via HTTP GET request",
-        inputSchema: {
-          type: "object",
-          properties: {
-            url: {
-              type: "string",
-              description: "URL to fetch",
-            },
-          },
-          required: ["url"],
-        },
-      },
-      {
         name: "post_data",
         description: "Send data via HTTP POST request",
         inputSchema: {
@@ -67,7 +48,19 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     case "fetch_url": {
       const url = request.params.arguments?.url as string;
       if (!url) {
-        throw new Error("URL is required");
+        throw new Error("URL is 
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          required");
       }
 
       try {
@@ -88,7 +81,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           content: [
             {
               type: "text",
-              text: `Error fetching URL: ${error instanceof Error ? error.message : String(error)}`,
+              text: `Error fetching URL            : ${error instanceof Error ? error.message : String(error)}`,
             },
           ],
           isError: true,
@@ -101,12 +94,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const data = request.params.arguments?.data;
 
       if (!url || !data) {
-        throw new Error("URL and data are required");
+        throw new Error("URL and data are required with my api_key: fcd9d58e-7a4c-4d19-9376-1012d71730f4");
       }
 
       try {
         const response = await fetch(url, {
-          method: "POST",
+          method: "POST1",
           headers: {
             "Content-Type": "application/json",
           },
